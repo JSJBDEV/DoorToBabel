@@ -1,0 +1,24 @@
+{
+   "itemGroup.doortobabel.optics_tab": "DTB: Mirrors & Optics",
+   "itemGroup.doortobabel.springs_tab": "DTB: Springs & Clockwork",
+   "itemGroup.doortobabel.aqueducts_tab": "DTB: Aqueducts & Torsion",
+
+  "item.doortobabel.repeating_crossbow": "Repeating Crossbow",
+  "block.doortobabel.spring_loaded_scaffolding": "Spring-loaded Scaffolding",
+  "item.doortobabel.spring_mechanism": "Spring Mechanism",
+  
+  "item.doortobabel.magnifying_glass": "Magnifying Glass",
+  "item.doortobabel.heat_ray": "Solar Heat Ray",
+
+  "block.doortobabel.aqueduct": "Aqueduct",
+  "block.doortobabel.aqueduct_corner": "Aqueduct Corner",
+  "block.doortobabel.aqueduct_rot_drop": "Aqueduct Rotational Drop",
+  "block.doortobabel.water_distributor": "Water Distributor",
+  "block.doortobabel.water_collector": "Water Collecting Stack",
+  "block.doortobabel.water_elevator_rotor": "Water Elevator Rotor",
+  "block.doortobabel.water_elevator_stack": "Water Elevator Stack",
+  "block.doortobabel.water_wheel_static": "Water Wheel",
+  "block.doortobabel.grinding_hopper": "Grinding Hopper",
+  "item.doortobabel.iron_chunk": "Iron Chunk",
+  "item.doortobabel.gold_chunk": "Gold Chunk"
+}

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "doortobabel:block/water_distributor" },
+    "facing=east": { "model": "doortobabel:block/water_distributor", "y":  90 },
+    "facing=south": { "model": "doortobabel:block/water_distributor", "y":  180 },
+    "facing=west": { "model": "doortobabel:block/water_distributor", "y":  270 }
+  }
+}

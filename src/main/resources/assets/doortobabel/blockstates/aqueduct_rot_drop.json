@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "doortobabel:block/aqueduct_rot_drop" },
+    "facing=east": { "model": "doortobabel:block/aqueduct_rot_drop", "y":  90 },
+    "facing=south": { "model": "doortobabel:block/aqueduct_rot_drop", "y":  180 },
+    "facing=west": { "model": "doortobabel:block/aqueduct_rot_drop", "y":  270 }
+  }
+}

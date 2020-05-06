@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "doortobabel:block/aqueduct_corner_water" },
+    "facing=east": { "model": "doortobabel:block/aqueduct_corner_water", "y":  90 },
+    "facing=south": { "model": "doortobabel:block/aqueduct_corner_water", "y":  180 },
+    "facing=west": { "model": "doortobabel:block/aqueduct_corner_water", "y":  270 }
+  }
+}
