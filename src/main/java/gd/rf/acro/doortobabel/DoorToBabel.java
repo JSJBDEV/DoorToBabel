@@ -55,7 +55,8 @@ public class DoorToBabel implements ModInitializer {
 	public static final WaterElevatorBlock WATER_ELEVATOR_ROTOR = new WaterElevatorBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build());
 	public static final WaterElevatorBlock WATER_ELEVATOR_STACK = new WaterElevatorBlock(FabricBlockSettings.of(Material.METAL).build());
 	public static final SpringLoadedScaffolding SPRING_LOADED_SCAFFOLDING = new SpringLoadedScaffolding(FabricBlockSettings.of(Material.METAL).build());
-	public static final WinchLineBlock WINCH_LINE = new WinchLineBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build(),100,true);
+	public static final WinchLineBlock WINCH_LINE = new WinchLineBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build(),100,false);
+	public static final WinchLineBlock WINCH_LINE_SPRING = new WinchLineBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build(),100,true);
 	private void registerBlocks()
 	{
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "aqueduct"), AQUEDUCT);
@@ -80,6 +81,7 @@ public class DoorToBabel implements ModInitializer {
 
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "grinding_hopper"), GRINDING_HOPPER);
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "winch_line"), WINCH_LINE);
+		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "winch_line_spring"), WINCH_LINE_SPRING);
 
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "water_elevator_rotor"), WATER_ELEVATOR_ROTOR);
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "water_elevator_stack"), WATER_ELEVATOR_STACK);
@@ -105,6 +107,7 @@ public class DoorToBabel implements ModInitializer {
 		Registry.register(Registry.ITEM, new Identifier("doortobabel", "water_elevator_rotor"), new BlockItem(WATER_ELEVATOR_ROTOR, new Item.Settings().group(AQUEDUCTS)));
 		Registry.register(Registry.ITEM, new Identifier("doortobabel", "water_elevator_stack"), new BlockItem(WATER_ELEVATOR_STACK, new Item.Settings().group(AQUEDUCTS)));
 		Registry.register(Registry.ITEM, new Identifier("doortobabel", "winch_line"), new BlockItem(WINCH_LINE, new Item.Settings().group(AQUEDUCTS)));
+		Registry.register(Registry.ITEM, new Identifier("doortobabel", "winch_line_spring"), new BlockItem(WINCH_LINE_SPRING, new Item.Settings().group(SPRINGS)));
 
 		Registry.register(Registry.ITEM, new Identifier("doortobabel", "spring_loaded_scaffolding"), new SLSBlockItem(SPRING_LOADED_SCAFFOLDING, new Item.Settings().group(SPRINGS)));
 

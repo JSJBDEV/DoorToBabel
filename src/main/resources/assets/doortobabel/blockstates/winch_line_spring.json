@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "doortobabel:block/winch_line" },
+    "facing=east": { "model": "doortobabel:block/winch_line", "y":  90 },
+    "facing=south": { "model": "doortobabel:block/winch_line", "y":  180 },
+    "facing=west": { "model": "doortobabel:block/winch_line", "y":  270 }
+  }
+}
