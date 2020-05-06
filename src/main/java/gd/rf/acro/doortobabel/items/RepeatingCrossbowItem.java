@@ -1,5 +1,6 @@
 package gd.rf.acro.doortobabel.items;
 
+import gd.rf.acro.doortobabel.DoorToBabel;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.FireworkEntity;
@@ -14,6 +15,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.RandomUtils;
 
@@ -35,6 +37,7 @@ public class RepeatingCrossbowItem extends Item {
         {
             handOff=true;
         }
+
         return super.use(world, user, hand);
     }
 

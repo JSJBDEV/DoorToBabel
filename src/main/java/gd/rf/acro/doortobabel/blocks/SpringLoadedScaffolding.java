@@ -36,7 +36,6 @@ public class SpringLoadedScaffolding extends ScaffoldingBlock {
             player.setVelocity(0,0,0);
             player.teleport(pos.getX()+0.5,pos.up().getY(),pos.getZ()+0.5);
         }
-        CropBlock block;
         return super.onUse(state, world, pos, player, hand, hit);
     }
 
