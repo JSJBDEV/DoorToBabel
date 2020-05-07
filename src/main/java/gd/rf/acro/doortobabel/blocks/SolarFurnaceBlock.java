@@ -9,8 +9,7 @@ import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.SmeltingRecipe;
+import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.ActionResult;
@@ -22,10 +21,10 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
 public class SolarFurnaceBlock extends Block {
+    private HashMap<Item,ItemStack> recipeCache = new HashMap<>();
     public SolarFurnaceBlock(Settings settings) {
         super(settings);
     }
@@ -45,30 +44,47 @@ public class SolarFurnaceBlock extends Block {
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if(world.getBlockState(pos.up()).getBlock()instanceof ChestBlock && world.getBlockState(pos.down()).getBlock()instanceof ChestBlock)
+        if(world.getBlockState(pos.up()).getBlock()instanceof ChestBlock && world.getBlockState(pos.down()).getBlock()instanceof ChestBlock && !world.isClient)
         {
             ChestBlockEntity input = (ChestBlockEntity) world.getBlockEntity(pos.up());
             ChestBlockEntity output = (ChestBlockEntity) world.getBlockEntity(pos.down());
-            ItemStack stackOut = ItemStack.EMPTY;
-            for (int i = 0; i < input.getInvSize(); i++) {
-                    ItemStack stack = Utils.getCookingOutcome(input.getInvStack(i),world);
-                    if(stack!=null)
+            if(Utils.doesInventoryHaveSpace(output))
+            {
+                ItemStack stackOut = ItemStack.EMPTY;
+                for (int i = 0; i < input.getInvSize(); i++) {
+                    if(recipeCache.containsKey(input.getInvStack(i).getItem()))
                     {
-                        stackOut=stack;
-                        break;
+                        stackOut=recipeCache.get(input.getInvStack(i).getItem());
+                        System.out.println(input.getInvStack(i));
+                        input.getInvStack(i).decrement(1);
                     }
-            }
-            if(stackOut!=ItemStack.EMPTY){
-                for (int i = 0; i < output.getInvSize(); i++) {
-                    if(output.getInvStack(i)==ItemStack.EMPTY)
+                    else
                     {
-                        output.setInvStack(i,stackOut);
-                        break;
+                        ItemStack stack = Utils.getCookingOutcome(input.getInvStack(i),world);
+                        if(stack!=null)
+                        {
+                            if(stack.getItem()!=Items.AIR)
+                            {
+                                stackOut=stack.copy();
+                                recipeCache.put(input.getInvStack(i).getItem(),stackOut);
+                                input.getInvStack(i).decrement(1);
+                                break;
+                            }
+                        }
+                    }
+                }
+                if(stackOut!=ItemStack.EMPTY){
+                    for (int i = 0; i < output.getInvSize(); i++) {
+                        if(output.getInvStack(i)==ItemStack.EMPTY)
+                        {
+                            output.setInvStack(i,stackOut.copy());
+                            break;
+                        }
                     }
                 }
             }
         }
-        world.getBlockTickScheduler().schedule(pos,this,100);
+        world.getBlockTickScheduler().schedule(pos,this,20);
     }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {

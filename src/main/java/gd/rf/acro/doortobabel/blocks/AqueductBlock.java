@@ -62,22 +62,25 @@ public class AqueductBlock extends HorizontalFacingBlock implements BlockEntityP
             //move items from the chest about the origin pos to this chest
             ChestBlockEntity input = (ChestBlockEntity) world.getBlockEntity(origin.down());
             ChestBlockEntity output = (ChestBlockEntity) world.getBlockEntity(pos.add(dir));
-            ItemStack item = ItemStack.EMPTY;
-            for (int i = 0; i < input.getInvSize(); i++) {
-                if(input.getInvStack(i)!= ItemStack.EMPTY)
-                {
-                    item=input.getInvStack(i);
-                    input.setInvStack(i,ItemStack.EMPTY);
-                    break;
-                }
-            }
-            if(item!=ItemStack.EMPTY)
+            if(Utils.doesInventoryHaveSpace(output))
             {
-                for (int i = 0; i < output.getInvSize(); i++) {
-                    if(output.getInvStack(i)==ItemStack.EMPTY)
+                ItemStack item = ItemStack.EMPTY;
+                for (int i = 0; i < input.getInvSize(); i++) {
+                    if(input.getInvStack(i)!= ItemStack.EMPTY)
                     {
-                        output.setInvStack(i,item);
+                        item=input.getInvStack(i);
+                        input.setInvStack(i,ItemStack.EMPTY);
                         break;
+                    }
+                }
+                if(item!=ItemStack.EMPTY)
+                {
+                    for (int i = 0; i < output.getInvSize(); i++) {
+                        if(output.getInvStack(i)==ItemStack.EMPTY)
+                        {
+                            output.setInvStack(i,item);
+                            break;
+                        }
                     }
                 }
             }

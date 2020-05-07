@@ -29,7 +29,8 @@ public class BabelGenerator {
             }
         }
     }
-//https://stackoverflow.com/questions/3706219/algorithm-for-iterating-over-an-outward-spiral-on-a-discrete-2d-grid-from-the-or/3706260#3706260
+    //Modified from:
+    //https://stackoverflow.com/questions/3706219/algorithm-for-iterating-over-an-outward-spiral-on-a-discrete-2d-grid-from-the-or/3706260#3706260
     public static void SOSpiral(int points, World world, BlockPos pos)
         {
             // (di, dj) is a vector - direction in which we move right now
@@ -45,14 +46,13 @@ public class BabelGenerator {
             int segment_passed = 0;
             for (int k = 0; k < points; ++k) {
                 // make a step, add 'direction' vector (di, dj) to current position (i, j)
+                BlockPos struct = new BlockPos(pos.getX()+(i*5),up,pos.getZ()+(j*5));
+                makePlatformToGround(world,struct);
+                up--;
                 i += di;
                 j += dj;
                 ++segment_passed;
-                System.out.println(i + " " + j);
 
-                BlockPos struct = new BlockPos(pos.getX()+(i*5),up,pos.getZ()+(j*5));
-                makePlatformToGround(world,struct);
-                up++;
                 if (segment_passed == segment_length) {
                     // done with current segment
                     segment_passed = 0;
