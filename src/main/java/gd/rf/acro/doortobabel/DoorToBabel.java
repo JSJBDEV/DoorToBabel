@@ -57,6 +57,7 @@ public class DoorToBabel implements ModInitializer {
 	public static final SpringLoadedScaffolding SPRING_LOADED_SCAFFOLDING = new SpringLoadedScaffolding(FabricBlockSettings.of(Material.METAL).build());
 	public static final WinchLineBlock WINCH_LINE = new WinchLineBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build(),100,false);
 	public static final WinchLineBlock WINCH_LINE_SPRING = new WinchLineBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build(),100,true);
+	public static final SolarFurnaceBlock SOLAR_FURNACE = new SolarFurnaceBlock(FabricBlockSettings.of(Material.METAL).build());
 	private void registerBlocks()
 	{
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "aqueduct"), AQUEDUCT);
@@ -86,6 +87,7 @@ public class DoorToBabel implements ModInitializer {
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "water_elevator_rotor"), WATER_ELEVATOR_ROTOR);
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "water_elevator_stack"), WATER_ELEVATOR_STACK);
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "spring_loaded_scaffolding"), SPRING_LOADED_SCAFFOLDING);
+		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "solar_furnace"), SOLAR_FURNACE);
 
 	}
 	public static final Item IRON_CHUNK = new Item(new Item.Settings().group(AQUEDUCTS));

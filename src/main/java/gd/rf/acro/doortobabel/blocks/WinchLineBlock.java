@@ -2,11 +2,9 @@ package gd.rf.acro.doortobabel.blocks;
 
 import gd.rf.acro.doortobabel.DoorToBabel;
 import gd.rf.acro.doortobabel.Utils;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.FurnaceBlockEntity;
 import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -97,7 +95,7 @@ public class WinchLineBlock extends HorizontalFacingBlock {
             placer.playSound(SoundEvents.BLOCK_PISTON_EXTEND,1,1);
             while (world.getBlockState(current).getBlock()==Blocks.AIR && itemStack.getCount()>1)
             {
-                world.setBlockState(current,DoorToBabel.WINCH_LINE.getDefaultState().rotate(Utils.from3i(dir)));
+                world.setBlockState(current,DoorToBabel.WINCH_LINE_SPRING.getDefaultState().rotate(Utils.from3i(dir)));
                 current=current.add(dir);
                 itemStack.decrement(1);
             }
