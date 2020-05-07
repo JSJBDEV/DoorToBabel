@@ -109,12 +109,12 @@ public class AqueductBlock extends HorizontalFacingBlock implements BlockEntityP
                 AqueductBlock next = (AqueductBlock) world.getBlockState(pos.add(dir)).getBlock();
                 next.tellNeighbours(world,pos.add(dir),speed,new Vec3i(0,-1,0),origin);
             }
-            if((block==DoorToBabel.AQUEDUCT_CORNER || block==DoorToBabel.AQUEDUCT_CORNER_WATER) && entity.getSpeed()>1 && Utils.getValidFacings(thatRot).contains(dir))
+            if((block==DoorToBabel.AQUEDUCT_CORNER || block==DoorToBabel.AQUEDUCT_CORNER_WATER) && entity.getSpeed()>1 && Utils.getDirectionFromInput(thisRot,thatRot)!=null)
             {
                 BlockRotation rot = Utils.from3i(world.getBlockState(pos.add(dir)).get(Properties.HORIZONTAL_FACING).getVector());
                 world.setBlockState(pos.add(dir),DoorToBabel.AQUEDUCT_CORNER_WATER.getDefaultState().rotate(rot));
                 AqueductBlock next = (AqueductBlock) world.getBlockState(pos.add(dir)).getBlock();
-                next.tellNeighbours(world,pos.add(dir),speed-1,Utils.cornerPieceRedirect(thisRot,thatRot),origin);
+                next.tellNeighbours(world,pos.add(dir),speed-1,Utils.getDirectionFromInput(thisRot,thatRot),origin);
             }
 
         }

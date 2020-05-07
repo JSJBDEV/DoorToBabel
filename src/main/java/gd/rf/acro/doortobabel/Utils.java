@@ -93,11 +93,48 @@ public class Utils {
         }
         if(facing.getX()>0)
         {
-            return Arrays.asList(facing,new Vec3i(0,0,-1));
+            return Arrays.asList(facing,new Vec3i(0,0,1));
         }
         if(facing.getX()<0)
         {
-            return Arrays.asList(facing,new Vec3i(0,0,1));
+            return Arrays.asList(facing,new Vec3i(0,0,-1));
+        }
+        return null;
+    }
+
+    public static Vec3i getDirectionFromInput(Vec3i ductFacing, Vec3i cornerFacing)
+    {
+        if(ductFacing.getX()>0 && cornerFacing.getX()>0) //facing east
+        {
+            return new Vec3i(0,0,1);
+        }
+        if(ductFacing.getZ()<0 && cornerFacing.getX()>0)
+        {
+            return new Vec3i(-1,0,0);
+        }
+        if(ductFacing.getZ()<0 && cornerFacing.getZ()<0) //facing north
+        {
+            return new Vec3i(1,0,0);
+        }
+        if(ductFacing.getX()<0 && cornerFacing.getZ()<0)
+        {
+            return new Vec3i(0,0,1);
+        }
+        if(ductFacing.getZ()>0 && cornerFacing.getZ()>0) // facing south
+        {
+            return new Vec3i(-1,0,0);
+        }
+        if(ductFacing.getX()>0 && cornerFacing.getZ()>0)
+        {
+            return new Vec3i(0,0,-1);
+        }
+        if(ductFacing.getX()<0 && cornerFacing.getX()<0) //facing west
+        {
+            return new Vec3i(0,0,-1);
+        }
+        if(ductFacing.getZ()>0 && cornerFacing.getX()<0)
+        {
+            return new Vec3i(1,0,0);
         }
         return null;
     }
@@ -109,7 +146,8 @@ public class Utils {
         {
             return rotate(thisRot);
         }
-        return mirror(rotate(thisRot)); //it is rotated so that it is the other way, validity should be checked externally
+         //it is rotated so that it is the other way, validity should be checked externally
+        return mirror(rotate(thisRot));
     }
 
 

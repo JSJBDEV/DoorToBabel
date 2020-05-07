@@ -49,5 +49,6 @@ public class DoorToBabelClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(SPRING_LOADED_SCAFFOLDING, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(WINCH_LINE, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(WINCH_LINE_SPRING, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(SOLAR_FURNACE, RenderLayer.getTranslucent());
     }
 }

@@ -1,10 +1,7 @@
 package gd.rf.acro.doortobabel;
 
 import gd.rf.acro.doortobabel.blocks.*;
-import gd.rf.acro.doortobabel.items.HeatRayItem;
-import gd.rf.acro.doortobabel.items.MagnifyingGlassItem;
-import gd.rf.acro.doortobabel.items.RepeatingCrossbowItem;
-import gd.rf.acro.doortobabel.items.SLSBlockItem;
+import gd.rf.acro.doortobabel.items.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -57,7 +54,7 @@ public class DoorToBabel implements ModInitializer {
 	public static final SpringLoadedScaffolding SPRING_LOADED_SCAFFOLDING = new SpringLoadedScaffolding(FabricBlockSettings.of(Material.METAL).build());
 	public static final WinchLineBlock WINCH_LINE = new WinchLineBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build(),100,false);
 	public static final WinchLineBlock WINCH_LINE_SPRING = new WinchLineBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build(),100,true);
-	public static final SolarFurnaceBlock SOLAR_FURNACE = new SolarFurnaceBlock(FabricBlockSettings.of(Material.METAL).build());
+	public static final SolarFurnaceBlock SOLAR_FURNACE = new SolarFurnaceBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build());
 	private void registerBlocks()
 	{
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "aqueduct"), AQUEDUCT);
@@ -96,6 +93,7 @@ public class DoorToBabel implements ModInitializer {
 	public static final RepeatingCrossbowItem REPEATING_CROSSBOW = new RepeatingCrossbowItem(new Item.Settings().group(SPRINGS),16);
 	public static final MagnifyingGlassItem MAGNIFYING_GLASS = new MagnifyingGlassItem(new Item.Settings().group(OPTICS).maxDamage(100));
 	public static final HeatRayItem HEAT_RAY = new HeatRayItem(new Item.Settings().group(OPTICS));
+	public static final StructureItem STRUCTURE_ITEM = new StructureItem(new Item.Settings().group(AQUEDUCTS));
 	public void registerItems()
 	{
 		Registry.register(Registry.ITEM, new Identifier("doortobabel", "aqueduct"), new BlockItem(AQUEDUCT, new Item.Settings().group(AQUEDUCTS)));
@@ -120,6 +118,7 @@ public class DoorToBabel implements ModInitializer {
 
 		Registry.register(Registry.ITEM,new Identifier("doortobabel","magnifying_glass"),MAGNIFYING_GLASS);
 		Registry.register(Registry.ITEM,new Identifier("doortobabel","heat_ray"),HEAT_RAY);
+		Registry.register(Registry.ITEM,new Identifier("doortobabel","structure_item"),STRUCTURE_ITEM);
 
 	}
 	public static BlockEntityType<AqueductBlockEntity> AQUEDUCT_ENTITY;
