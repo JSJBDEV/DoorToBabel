@@ -1,5 +1,6 @@
 package gd.rf.acro.doortobabel.world;
 
+import gd.rf.acro.doortobabel.DoorToBabel;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
@@ -43,6 +44,7 @@ public class BabelGenerator {
             // current position (i, j) and how much of current segment we passed
             int i = 0;
             int j = 0;
+            world.setBlockState(pos.up(), DoorToBabel.DOOR_TO_BABEL.getDefaultState());
             int segment_passed = 0;
             for (int k = 0; k < points; ++k) {
                 // make a step, add 'direction' vector (di, dj) to current position (i, j)

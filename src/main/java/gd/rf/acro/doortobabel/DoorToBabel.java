@@ -2,9 +2,15 @@ package gd.rf.acro.doortobabel;
 
 import gd.rf.acro.doortobabel.blocks.*;
 import gd.rf.acro.doortobabel.items.*;
+import gd.rf.acro.doortobabel.world.BabelChunkGenerator;
+import gd.rf.acro.doortobabel.world.BabelDimension;
+import gd.rf.acro.doortobabel.world.BabelPlacer;
+import gd.rf.acro.doortobabel.world.FabricChunkGeneratorType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.dimension.v1.EntityPlacer;
+import net.fabricmc.fabric.api.dimension.v1.FabricDimensionType;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntityType;
@@ -15,6 +21,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
+import net.minecraft.world.gen.chunk.ChunkGeneratorType;
 
 public class DoorToBabel implements ModInitializer {
 	public static final ItemGroup AQUEDUCTS = FabricItemGroupBuilder.build(
@@ -26,6 +34,9 @@ public class DoorToBabel implements ModInitializer {
 	public static final ItemGroup OPTICS = FabricItemGroupBuilder.build(
 			new Identifier("doortobabel", "optics_tab"),
 			() -> new ItemStack(DoorToBabel.MAGNIFYING_GLASS));
+
+	public static FabricDimensionType BABEL;
+	public static ChunkGeneratorType<ChunkGeneratorConfig, BabelChunkGenerator> BABEL_CHUNK_GENERATOR;
 	@Override
 	public void onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
@@ -35,6 +46,8 @@ public class DoorToBabel implements ModInitializer {
 		registerBlocks();
 		registerItems();
 		registerBlockEntities();
+		BABEL = FabricDimensionType.builder().factory(BabelDimension::new).skyLight(true).defaultPlacer(BabelPlacer.ENTERING).buildAndRegister(new Identifier("doortobabel","babel_world"));
+		BABEL_CHUNK_GENERATOR = FabricChunkGeneratorType.register(new Identifier("doortobabel","babel"),BabelChunkGenerator::new,ChunkGeneratorConfig::new,false);
 		System.out.println("Salve, Mundi!");
 
 
@@ -57,6 +70,7 @@ public class DoorToBabel implements ModInitializer {
 	public static final WinchLineBlock WINCH_LINE = new WinchLineBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build(),100,false);
 	public static final WinchLineBlock WINCH_LINE_SPRING = new WinchLineBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build(),100,true);
 	public static final SolarFurnaceBlock SOLAR_FURNACE = new SolarFurnaceBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build());
+	public static final  DTBBlock DOOR_TO_BABEL = new DTBBlock(FabricBlockSettings.of(Material.ANVIL).build());
 	public static final Block BABELSTONE = new Block(FabricBlockSettings.of(Material.METAL).strength(-1,3600000.0F).build());
 	private void registerBlocks()
 	{
@@ -89,6 +103,7 @@ public class DoorToBabel implements ModInitializer {
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "spring_loaded_scaffolding"), SPRING_LOADED_SCAFFOLDING);
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "solar_furnace"), SOLAR_FURNACE);
 		Registry.register(Registry.BLOCK,new Identifier("doortobabel","babelstone"),BABELSTONE);
+		Registry.register(Registry.BLOCK,new Identifier("doortobabel","door_to_babel"),DOOR_TO_BABEL);
 
 	}
 	public static final Item IRON_CHUNK = new Item(new Item.Settings().group(AQUEDUCTS));

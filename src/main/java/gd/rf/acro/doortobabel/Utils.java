@@ -1,12 +1,21 @@
 package gd.rf.acro.doortobabel;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.SmeltingRecipe;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.structure.Structure;
+import net.minecraft.structure.StructureManager;
+import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -177,5 +186,18 @@ public class Utils {
             }
         }
         return false;
+    }
+
+    public static void spawnStructure(ServerWorld world, BlockPos pos, String name)
+    {
+       StructureManager manager = world.getStructureManager();
+        Identifier load = new Identifier("doortobabel",name);
+        Structure structure = manager.getStructure(load);
+        if(structure!=null)
+        {
+            StructurePlacementData data = new StructurePlacementData();
+            structure.place(world,pos,data);
+        }
+
     }
 }
