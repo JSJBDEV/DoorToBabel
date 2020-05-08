@@ -203,11 +203,10 @@ public class Utils {
         if(structure!=null)
         {
             StructurePlacementData data = new StructurePlacementData()
-                    .setPosition(pos)
                     .setMirrored(BlockMirror.NONE)
                     .setIgnoreEntities(true)
                     .setRotation(BlockRotation.NONE);
-            structure.place(world,pos,data);
+            structure.place(world,pos.west(4).north(4).up(),data);
         }
         else
         {

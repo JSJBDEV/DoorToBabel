@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "doortobabel:block/babel_gate" },
+    "facing=east": { "model": "doortobabel:block/babel_gate", "y":  90 },
+    "facing=south": { "model": "doortobabel:block/babel_gate", "y":  180 },
+    "facing=west": { "model": "doortobabel:block/babel_gate", "y":  270 }
+  }
+}

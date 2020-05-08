@@ -34,6 +34,9 @@ public class DoorToBabel implements ModInitializer {
 	public static final ItemGroup OPTICS = FabricItemGroupBuilder.build(
 			new Identifier("doortobabel", "optics_tab"),
 			() -> new ItemStack(DoorToBabel.MAGNIFYING_GLASS));
+	public static final ItemGroup DUNGEON = FabricItemGroupBuilder.build(
+			new Identifier("doortobabel", "dungeon_tab"),
+			() -> new ItemStack(DoorToBabel.CHISELED_BABELSTONE));
 
 	public static FabricDimensionType BABEL;
 	public static ChunkGeneratorType<ChunkGeneratorConfig, BabelChunkGenerator> BABEL_CHUNK_GENERATOR;
@@ -72,6 +75,8 @@ public class DoorToBabel implements ModInitializer {
 	public static final SolarFurnaceBlock SOLAR_FURNACE = new SolarFurnaceBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build());
 	public static final  DTBBlock DOOR_TO_BABEL = new DTBBlock(FabricBlockSettings.of(Material.ANVIL).build());
 	public static final Block BABELSTONE = new Block(FabricBlockSettings.of(Material.METAL).strength(-1,3600000.0F).build());
+	public static final Block CHISELED_BABELSTONE = new Block(FabricBlockSettings.of(Material.METAL).strength(-1,3600000.0F).build());
+	public static final BabelGateBlock BABEL_GATE = new BabelGateBlock(FabricBlockSettings.of(Material.ANVIL).build());
 	private void registerBlocks()
 	{
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "aqueduct"), AQUEDUCT);
@@ -103,7 +108,9 @@ public class DoorToBabel implements ModInitializer {
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "spring_loaded_scaffolding"), SPRING_LOADED_SCAFFOLDING);
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "solar_furnace"), SOLAR_FURNACE);
 		Registry.register(Registry.BLOCK,new Identifier("doortobabel","babelstone"),BABELSTONE);
+		Registry.register(Registry.BLOCK,new Identifier("doortobabel","chiseled_babelstone"),CHISELED_BABELSTONE);
 		Registry.register(Registry.BLOCK,new Identifier("doortobabel","door_to_babel"),DOOR_TO_BABEL);
+		Registry.register(Registry.BLOCK,new Identifier("doortobabel","babel_gate"),BABEL_GATE);
 
 	}
 	public static final Item IRON_CHUNK = new Item(new Item.Settings().group(AQUEDUCTS));
@@ -112,7 +119,7 @@ public class DoorToBabel implements ModInitializer {
 	public static final RepeatingCrossbowItem REPEATING_CROSSBOW = new RepeatingCrossbowItem(new Item.Settings().group(SPRINGS),16);
 	public static final MagnifyingGlassItem MAGNIFYING_GLASS = new MagnifyingGlassItem(new Item.Settings().group(OPTICS).maxDamage(100));
 	public static final HeatRayItem HEAT_RAY = new HeatRayItem(new Item.Settings().group(OPTICS));
-	public static final StructureItem STRUCTURE_ITEM = new StructureItem(new Item.Settings().group(AQUEDUCTS));
+	public static final StructureItem STRUCTURE_ITEM = new StructureItem(new Item.Settings().group(DUNGEON));
 	public void registerItems()
 	{
 		Registry.register(Registry.ITEM, new Identifier("doortobabel", "aqueduct"), new BlockItem(AQUEDUCT, new Item.Settings().group(AQUEDUCTS)));
@@ -129,6 +136,11 @@ public class DoorToBabel implements ModInitializer {
 		Registry.register(Registry.ITEM, new Identifier("doortobabel", "winch_line_spring"), new BlockItem(WINCH_LINE_SPRING, new Item.Settings().group(SPRINGS)));
 
 		Registry.register(Registry.ITEM, new Identifier("doortobabel", "spring_loaded_scaffolding"), new SLSBlockItem(SPRING_LOADED_SCAFFOLDING, new Item.Settings().group(SPRINGS)));
+		Registry.register(Registry.ITEM, new Identifier("doortobabel", "babel_gate"), new SLSBlockItem(BABEL_GATE, new Item.Settings().group(DUNGEON)));
+
+		Registry.register(Registry.ITEM, new Identifier("doortobabel", "babelstone"), new BlockItem(BABELSTONE, new Item.Settings().group(DUNGEON)));
+		Registry.register(Registry.ITEM, new Identifier("doortobabel", "chiseled_babelstone"), new BlockItem(CHISELED_BABELSTONE, new Item.Settings().group(DUNGEON)));
+
 
 		Registry.register(Registry.ITEM,new Identifier("doortobabel","iron_chunk"),IRON_CHUNK);
 		Registry.register(Registry.ITEM,new Identifier("doortobabel","gold_chunk"),GOLD_CHUNK);

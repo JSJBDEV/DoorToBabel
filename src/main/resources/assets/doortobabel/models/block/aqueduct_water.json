@@ -58,5 +58,10 @@
 				"down": {"uv": [0, 0, 2, 16], "texture": "#1", "tintindex": 0}
 			}
 		}
-	]
+	],
+	"display": {
+		"gui": {
+			"rotation": [45, 45, 0]
+		}
+	}
 }

@@ -2,6 +2,7 @@
    "itemGroup.doortobabel.optics_tab": "DTB: Mirrors & Optics",
    "itemGroup.doortobabel.springs_tab": "DTB: Springs & Clockwork",
    "itemGroup.doortobabel.aqueducts_tab": "DTB: Aqueducts & Torsion",
+  "itemGroup.doortobabel.dungeon_tab": "DTB: The Tower Of Babel",
 
   "item.doortobabel.repeating_crossbow": "Repeating Crossbow",
   "block.doortobabel.spring_loaded_scaffolding": "Spring-loaded Scaffolding",
@@ -9,6 +10,10 @@
   
   "item.doortobabel.magnifying_glass": "Magnifying Glass",
   "item.doortobabel.heat_ray": "Solar Heat Ray",
+
+  "block.doortobabel.babelstone": "Babelstone",
+  "block.doortobabel.chiseled_babelstone": "Chiseled Babelstone",
+  "block.doortobabel.babel_gate": "Babel Gate",
 
   "block.doortobabel.aqueduct": "Aqueduct",
   "block.doortobabel.aqueduct_corner": "Aqueduct Corner",

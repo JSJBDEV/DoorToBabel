@@ -58,5 +58,11 @@
 				"down": {"uv": [0, 0, 2, 16], "rotation": 270, "texture": "#1"}
 			}
 		}
-	]
+	],
+	"display": {
+		"gui": {
+			"rotation": [45, 45, 0],
+			"scale": [0.6,0.6,0.6]
+		}
+	}
 }
