@@ -76,7 +76,8 @@ public class DoorToBabel implements ModInitializer {
 	public static final  DTBBlock DOOR_TO_BABEL = new DTBBlock(FabricBlockSettings.of(Material.ANVIL).build());
 	public static final Block BABELSTONE = new Block(FabricBlockSettings.of(Material.METAL).strength(-1,3600000.0F).build());
 	public static final Block CHISELED_BABELSTONE = new Block(FabricBlockSettings.of(Material.METAL).strength(-1,3600000.0F).build());
-	public static final BabelGateBlock BABEL_GATE = new BabelGateBlock(FabricBlockSettings.of(Material.ANVIL).build());
+	public static final BabelGateBlock BABEL_GATE = new BabelGateBlock(FabricBlockSettings.of(Material.ANVIL).lightLevel(10).build());
+	public static final SpawnerBlock BOSS_SPAWNER = new SpawnerBlock(FabricBlockSettings.of(Material.ANVIL).lightLevel(10).ticksRandomly().build());
 	private void registerBlocks()
 	{
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "aqueduct"), AQUEDUCT);
@@ -111,9 +112,11 @@ public class DoorToBabel implements ModInitializer {
 		Registry.register(Registry.BLOCK,new Identifier("doortobabel","chiseled_babelstone"),CHISELED_BABELSTONE);
 		Registry.register(Registry.BLOCK,new Identifier("doortobabel","door_to_babel"),DOOR_TO_BABEL);
 		Registry.register(Registry.BLOCK,new Identifier("doortobabel","babel_gate"),BABEL_GATE);
+		Registry.register(Registry.BLOCK,new Identifier("doortobabel","boss_spawner"),BOSS_SPAWNER);
 
 	}
 	public static final Item IRON_CHUNK = new Item(new Item.Settings().group(AQUEDUCTS));
+	public static final Item STAIR_KEY = new Item(new Item.Settings().group(DUNGEON));
 	public static final Item GOLD_CHUNK = new Item(new Item.Settings().group(AQUEDUCTS));
 	public static final Item SPRING_MECHANISM = new Item(new Item.Settings().group(SPRINGS));
 	public static final RepeatingCrossbowItem REPEATING_CROSSBOW = new RepeatingCrossbowItem(new Item.Settings().group(SPRINGS),16);
@@ -150,6 +153,7 @@ public class DoorToBabel implements ModInitializer {
 		Registry.register(Registry.ITEM,new Identifier("doortobabel","magnifying_glass"),MAGNIFYING_GLASS);
 		Registry.register(Registry.ITEM,new Identifier("doortobabel","heat_ray"),HEAT_RAY);
 		Registry.register(Registry.ITEM,new Identifier("doortobabel","structure_item"),STRUCTURE_ITEM);
+		Registry.register(Registry.ITEM,new Identifier("doortobabel","stair_key"),STAIR_KEY);
 
 	}
 	public static BlockEntityType<AqueductBlockEntity> AQUEDUCT_ENTITY;
