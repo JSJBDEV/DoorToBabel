@@ -10,6 +10,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePlacementData;
+import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -17,6 +18,10 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -190,14 +195,27 @@ public class Utils {
 
     public static void spawnStructure(ServerWorld world, BlockPos pos, String name)
     {
-       StructureManager manager = world.getStructureManager();
+        StructureManager manager = world.getStructureManager();
+
+
         Identifier load = new Identifier("doortobabel",name);
         Structure structure = manager.getStructure(load);
         if(structure!=null)
         {
-            StructurePlacementData data = new StructurePlacementData();
+            StructurePlacementData data = new StructurePlacementData()
+                    .setPosition(pos)
+                    .setMirrored(BlockMirror.NONE)
+                    .setIgnoreEntities(true)
+                    .setRotation(BlockRotation.NONE);
             structure.place(world,pos,data);
         }
+        else
+        {
+            System.out.println("this structure is null!");
+        }
+
+
 
     }
+
 }

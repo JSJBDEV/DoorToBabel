@@ -18,23 +18,36 @@ public class StructureItem extends Item {
     public StructureItem(Settings settings) {
         super(settings);
     }
-    private static final List<String> STRUCTURES = Arrays.asList("BABEL","room1");
+    private static final List<String> STRUCTURES = Arrays.asList("BABEL","room_template");
     private static String selectedStructure = "BABEL";
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if(user.isSneaking() && world.isClient)
+        if(user.isSneaking())
         {
-            selectedStructure = STRUCTURES.get(STRUCTURES.indexOf(selectedStructure)+1);
-            user.sendMessage(new LiteralText("Selected Structure: "+selectedStructure));
+            if(world.isClient)
+            {
+                if(STRUCTURES.indexOf(selectedStructure)+1==STRUCTURES.size())
+                {
+                    selectedStructure=STRUCTURES.get(0);
+                }
+                else
+                {
+                    selectedStructure = STRUCTURES.get(STRUCTURES.indexOf(selectedStructure)+1);
+                }
+                user.sendMessage(new LiteralText("Selected Structure: "+selectedStructure));
+            }
         }
-        if(selectedStructure.equals("BABEL"))
-        {
-            BabelGenerator.generate(world,user.getBlockPos());
-        }
-        else if(!world.isClient)
-        {
-            Utils.spawnStructure((ServerWorld) world,user.getBlockPos(),selectedStructure);
+        else{
+            if(selectedStructure.equals("BABEL"))
+            {
+                BabelGenerator.generate(world,user.getBlockPos());
+            }
+            else if(!world.isClient)
+            {
+                System.out.println(selectedStructure);
+                Utils.spawnStructure((ServerWorld) world,user.getBlockPos(),selectedStructure);
+            }
         }
         return super.use(world, user, hand);
     }
