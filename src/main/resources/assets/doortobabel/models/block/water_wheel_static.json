@@ -2,6 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "minecraft:block/chiseled_quartz_block_top",
+		"1": "minecraft:block/gold_block",
 		"particle": "minecraft:block/chiseled_quartz_block_top"
 	},
 	"elements": [
@@ -9,7 +10,7 @@
 			"from": [7, 7, 0],
 			"to": [9, 9, 16],
 			"faces": {
-				"north": {"uv": [0, 0, 2, 2], "texture": "#0"},
+				"north": {"uv": [3, 2, 5, 4], "texture": "#1"},
 				"east": {"uv": [0, 0, 16, 2], "texture": "#0"},
 				"south": {"uv": [0, 0, 2, 2], "texture": "#0"},
 				"west": {"uv": [0, 0, 16, 2], "texture": "#0"},
@@ -73,7 +74,7 @@
 	"display": {
 		"gui": {
 			"rotation": [45, 45, 0],
-			"scale": [0.6,0.6,0.6]
+			"scale": [0.6, 0.6, 0.6]
 		}
 	}
 }
