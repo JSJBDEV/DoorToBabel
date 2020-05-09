@@ -517,4 +517,25 @@ public class Utils {
         return names[RandomUtils.nextInt(0,names.length)]+" the "+descriptors[RandomUtils.nextInt(0,descriptors.length)];
     }
 
+    public static boolean canGenerateAnotherRoom(Vec3i dir,int relx, int relz, int maxx, int maxz)
+    {
+        if(dir.getX()>0 && relx>=maxx)
+        {
+            return false;
+        }
+        if(dir.getX()<0 && relx<=(0-maxx))
+        {
+            return false;
+        }
+        if(dir.getZ()>0 && relz>=maxz)
+        {
+            return false;
+        }
+        if(dir.getZ()<0 && relz<=(0-maxz))
+        {
+            return false;
+        }
+        return true;
+    }
+
 }

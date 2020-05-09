@@ -10,10 +10,12 @@
   
   "item.doortobabel.magnifying_glass": "Magnifying Glass",
   "item.doortobabel.heat_ray": "Solar Heat Ray",
+  "block.doortobabel.solar_furnace": "Solar Furnace",
 
   "block.doortobabel.babelstone": "Babelstone",
   "block.doortobabel.chiseled_babelstone": "Chiseled Babelstone",
   "block.doortobabel.babel_gate": "Babel Gate",
+  "item.doortobabel.stair_key": "Dungeon Stair Key",
 
   "block.doortobabel.aqueduct": "Aqueduct",
   "block.doortobabel.aqueduct_corner": "Aqueduct Corner",

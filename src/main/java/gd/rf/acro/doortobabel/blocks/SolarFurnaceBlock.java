@@ -29,6 +29,7 @@ public class SolarFurnaceBlock extends Block {
         super(settings);
     }
 
+
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if(!world.isClient)
@@ -44,7 +45,7 @@ public class SolarFurnaceBlock extends Block {
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if(world.getBlockState(pos.up()).getBlock()instanceof ChestBlock && world.getBlockState(pos.down()).getBlock()instanceof ChestBlock && !world.isClient)
+        if(world.getBlockState(pos.up()).getBlock()instanceof ChestBlock && world.getBlockState(pos.down()).getBlock()instanceof ChestBlock && !world.isClient && world.isSkyVisible(pos.north()))
         {
             ChestBlockEntity input = (ChestBlockEntity) world.getBlockEntity(pos.up());
             ChestBlockEntity output = (ChestBlockEntity) world.getBlockEntity(pos.down());

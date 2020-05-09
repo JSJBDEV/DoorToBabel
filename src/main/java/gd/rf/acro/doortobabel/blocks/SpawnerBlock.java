@@ -45,7 +45,7 @@ public class SpawnerBlock extends Block {
         boss.setEquipmentDropChance(EquipmentSlot.OFFHAND,1);
         boss.setCustomName(new LiteralText(Utils.compoundName()).formatted(Formatting.AQUA));
         boss.setCustomNameVisible(true);
-        boss.setHealth(100);
+        boss.setHealth(300);
         world.spawnEntity(boss);
 
     }

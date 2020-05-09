@@ -73,11 +73,14 @@ public class DoorToBabel implements ModInitializer {
 	public static final WinchLineBlock WINCH_LINE = new WinchLineBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build(),100,false);
 	public static final WinchLineBlock WINCH_LINE_SPRING = new WinchLineBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build(),100,true);
 	public static final SolarFurnaceBlock SOLAR_FURNACE = new SolarFurnaceBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build());
-	public static final  DTBBlock DOOR_TO_BABEL = new DTBBlock(FabricBlockSettings.of(Material.ANVIL).build());
+	public static final  DTBBlock DOOR_TO_BABEL = new DTBBlock(FabricBlockSettings.of(Material.ANVIL).strength(-1,3600000.0F).build());
 	public static final Block BABELSTONE = new Block(FabricBlockSettings.of(Material.METAL).strength(-1,3600000.0F).build());
 	public static final Block CHISELED_BABELSTONE = new Block(FabricBlockSettings.of(Material.METAL).strength(-1,3600000.0F).build());
 	public static final BabelGateBlock BABEL_GATE = new BabelGateBlock(FabricBlockSettings.of(Material.ANVIL).lightLevel(10).build());
 	public static final SpawnerBlock BOSS_SPAWNER = new SpawnerBlock(FabricBlockSettings.of(Material.ANVIL).lightLevel(10).ticksRandomly().build());
+	public static final DungeonAnchorBlock DUNGEON_ANCHOR = new DungeonAnchorBlock(FabricBlockSettings.of(Material.ANVIL).strength(-1,3600000.0F).lightLevel(10).build());
+	public static final VirtualStairBlock VIRTUAL_STAIR = new VirtualStairBlock(FabricBlockSettings.of(Material.ANVIL).strength(-1,3600000.0F).lightLevel(10).build(),false);
+	public static final VirtualStairBlock VIRTUAL_STAIR_UNLOCKED = new VirtualStairBlock(FabricBlockSettings.of(Material.ANVIL).strength(-1,3600000.0F).lightLevel(10).build(),true);
 	private void registerBlocks()
 	{
 		Registry.register(Registry.BLOCK, new Identifier("doortobabel", "aqueduct"), AQUEDUCT);
@@ -113,6 +116,9 @@ public class DoorToBabel implements ModInitializer {
 		Registry.register(Registry.BLOCK,new Identifier("doortobabel","door_to_babel"),DOOR_TO_BABEL);
 		Registry.register(Registry.BLOCK,new Identifier("doortobabel","babel_gate"),BABEL_GATE);
 		Registry.register(Registry.BLOCK,new Identifier("doortobabel","boss_spawner"),BOSS_SPAWNER);
+		Registry.register(Registry.BLOCK,new Identifier("doortobabel","dungeon_anchor"),DUNGEON_ANCHOR);
+		Registry.register(Registry.BLOCK,new Identifier("doortobabel","virtual_stair"),VIRTUAL_STAIR);
+		Registry.register(Registry.BLOCK,new Identifier("doortobabel","virtual_stair_unlocked"),VIRTUAL_STAIR_UNLOCKED);
 
 	}
 	public static final Item IRON_CHUNK = new Item(new Item.Settings().group(AQUEDUCTS));
@@ -139,10 +145,11 @@ public class DoorToBabel implements ModInitializer {
 		Registry.register(Registry.ITEM, new Identifier("doortobabel", "winch_line_spring"), new BlockItem(WINCH_LINE_SPRING, new Item.Settings().group(SPRINGS)));
 
 		Registry.register(Registry.ITEM, new Identifier("doortobabel", "spring_loaded_scaffolding"), new SLSBlockItem(SPRING_LOADED_SCAFFOLDING, new Item.Settings().group(SPRINGS)));
-		Registry.register(Registry.ITEM, new Identifier("doortobabel", "babel_gate"), new SLSBlockItem(BABEL_GATE, new Item.Settings().group(DUNGEON)));
 
 		Registry.register(Registry.ITEM, new Identifier("doortobabel", "babelstone"), new BlockItem(BABELSTONE, new Item.Settings().group(DUNGEON)));
 		Registry.register(Registry.ITEM, new Identifier("doortobabel", "chiseled_babelstone"), new BlockItem(CHISELED_BABELSTONE, new Item.Settings().group(DUNGEON)));
+		Registry.register(Registry.ITEM, new Identifier("doortobabel", "solar_furnace"), new BlockItem(SOLAR_FURNACE, new Item.Settings().group(OPTICS)));
+
 
 
 		Registry.register(Registry.ITEM,new Identifier("doortobabel","iron_chunk"),IRON_CHUNK);
@@ -160,13 +167,14 @@ public class DoorToBabel implements ModInitializer {
 	public static BlockEntityType<AqueductBlockEntity> AQUEDUCT_CORNER_ENTITY;
 	public static BlockEntityType<AqueductBlockEntity> AQUEDUCT_ROT_DROP_ENTITY;
 	public static BlockEntityType<WaterWheelBlockEntity> WATERWHEEL_BLOCK_ENTITY;
+	public static BlockEntityType<DungeonAnchorEntity> DUNGEON_ANCHOR_ENTITY;
 	private void registerBlockEntities()
 	{
 		AQUEDUCT_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE,"doortobabel:aqueduct_entity",BlockEntityType.Builder.create(AqueductBlockEntity::new,AQUEDUCT_WATER).build(null));
 		AQUEDUCT_ROT_DROP_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE,"doortobabel:aqueduct_rot_drop_entity",BlockEntityType.Builder.create(AqueductBlockEntity::new,AQUEDUCT_ROT_DROP_WATER).build(null));
 		AQUEDUCT_CORNER_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE,"doortobabel:aqueduct_corner_entity",BlockEntityType.Builder.create(AqueductBlockEntity::new,AQUEDUCT_CORNER_WATER).build(null));
 		WATERWHEEL_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE,"doortobabel:water_wheel_entity",BlockEntityType.Builder.create(WaterWheelBlockEntity::new,WATERWHEEL_BLOCK).build(null));
-
+		DUNGEON_ANCHOR_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE,"doortobabel:dungeon_anchor_entity",BlockEntityType.Builder.create(DungeonAnchorEntity::new,DUNGEON_ANCHOR).build(null));
 	}
 
 }
