@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "doortobabel",
+  "ingredients": [
+
+    {"item": "minecraft:iron_block"},
+    {"item": "minecraft:iron_block"},
+    {"item": "minecraft:redstone_block"}
+
+  ],
+  "result": {
+    "item": "doortobabel:heat_ray"
+  }
+}

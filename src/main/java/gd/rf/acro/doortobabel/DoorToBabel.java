@@ -126,8 +126,8 @@ public class DoorToBabel implements ModInitializer {
 	public static final Item GOLD_CHUNK = new Item(new Item.Settings().group(AQUEDUCTS));
 	public static final Item SPRING_MECHANISM = new Item(new Item.Settings().group(SPRINGS));
 	public static final RepeatingCrossbowItem REPEATING_CROSSBOW = new RepeatingCrossbowItem(new Item.Settings().group(SPRINGS),16);
-	public static final MagnifyingGlassItem MAGNIFYING_GLASS = new MagnifyingGlassItem(new Item.Settings().group(OPTICS).maxDamage(100));
-	public static final HeatRayItem HEAT_RAY = new HeatRayItem(new Item.Settings().group(OPTICS));
+	public static final MagnifyingGlassItem MAGNIFYING_GLASS = new MagnifyingGlassItem(new Item.Settings().group(OPTICS).maxDamage(1000));
+	public static final HeatRayItem HEAT_RAY = new HeatRayItem(new Item.Settings().group(OPTICS).maxDamage(1000));
 	public static final StructureItem STRUCTURE_ITEM = new StructureItem(new Item.Settings().group(DUNGEON));
 	public void registerItems()
 	{

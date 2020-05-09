@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "doortobabel",
+  "pattern": [
+    "W W",
+    "WBW",
+    "W W"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:string"
+    },
+    "B": {
+      "item": "minecraft:hay_bale"
+    }
+  },
+  "result": {
+    "item": "doortobabel:winch_line",
+    "count": 8
+  }
+}

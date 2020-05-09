@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "doortobabel",
+  "pattern": [
+    "RGR",
+    "WBW",
+    "RWR"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:iron_block"
+    },
+    "G": {
+      "item": "doortobabel:water_wheel_static"
+    },
+    "B": {
+      "item": "minecraft:hopper"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "doortobabel:grinding_hopper",
+    "count": 1
+  }
+}

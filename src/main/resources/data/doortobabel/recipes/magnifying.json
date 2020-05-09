@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "doortobabel",
+  "pattern": [
+    "PPP",
+    " PP",
+    "R P"
+  ],
+  "key": {
+    "P": {
+      "tag": "minecraft:glass"
+    },
+
+    "R": {
+      "item": "minecraft:blaze_rod"
+    }
+  },
+  "result": {
+    "item": "doortobabel:magnifying_glass",
+    "count": 1
+  }
+}

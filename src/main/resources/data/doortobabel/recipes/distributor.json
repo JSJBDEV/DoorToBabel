@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "doortobabel",
+  "pattern": [
+    "WWW",
+    "AHB",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:nether_quartz"
+    },
+    "A": {
+      "item": "doortobabel:aqueduct"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    },
+    "B": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "result": {
+    "item": "doortobabel:water_distributor",
+    "count": 1
+  }
+}

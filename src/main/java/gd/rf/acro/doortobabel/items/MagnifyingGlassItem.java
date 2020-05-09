@@ -29,10 +29,7 @@ public class MagnifyingGlassItem extends Item {
             {
                 context.getWorld().setBlockState(context.getBlockPos().up(), Blocks.FIRE.getDefaultState());
                 context.getPlayer().playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH,1,1);
-                context.getStack().damage(1,context.getPlayer(),(dobreak)->
-                {
-                    dobreak.sendToolBreakStatus(context.getHand());
-                });
+                context.getStack().damage(1,context.getPlayer(),(dobreak)-> dobreak.sendToolBreakStatus(context.getHand()));
             }
         }
         return super.useOnBlock(context);

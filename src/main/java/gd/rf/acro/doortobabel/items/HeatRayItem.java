@@ -44,6 +44,7 @@ public class HeatRayItem extends Item {
                 g /= h;
                 double j = random.nextDouble();
                 livingEntity.setFireTicks(100);
+                user.getStackInHand(hand).damage(1,user,(dobreak)-> dobreak.sendToolBreakStatus(hand));
                 while(j < h) {
                     j += 1.8D - d + random.nextDouble() * (1.7D - d);
                     world.addParticle(ParticleTypes.SMOKE, user.getBlockPos().getX() + e * j, user.getEyeY() + f * j, user.getBlockPos().getZ() + g * j, 0.0D, 0.0D, 0.0D);

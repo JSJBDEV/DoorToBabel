@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "doortobabel",
+  "pattern": [
+    "WRW",
+    "WIW",
+    "WRW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "I": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "item": "doortobabel:spring_mechanism",
+    "count": 1
+  }
+}

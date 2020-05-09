@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "doortobabel",
+  "ingredients": [
+
+    {"item": "doortobabel:water_elevator_stack"},
+    {"item": "doortobabel:water_wheel_static"}
+
+  ],
+  "result": {
+    "item": "doortobabel:water_elevator_rotor"
+  }
+}

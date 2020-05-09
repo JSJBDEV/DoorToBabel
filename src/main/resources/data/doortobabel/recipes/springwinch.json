@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "doortobabel",
+  "pattern": [
+    "WWW",
+    "WBW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "doortobabel:winch_line"
+    },
+    "B": {
+      "item": "door_to_babel:spring_mechanism"
+    }
+  },
+  "result": {
+    "item": "doortobabel:winch_line_spring",
+    "count": 8
+  }
+}

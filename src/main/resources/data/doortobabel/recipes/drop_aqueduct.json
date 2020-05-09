@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "doortobabel",
+  "ingredients": [
+
+    {"item": "doortobabel:aqueduct_corner"}
+
+  ],
+  "result": {
+    "item": "door_to_babel:aqueduct_rot_drop"
+  }
+}
