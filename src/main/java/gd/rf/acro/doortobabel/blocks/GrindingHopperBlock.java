@@ -5,8 +5,11 @@ import gd.rf.acro.doortobabel.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
+import net.minecraft.block.HopperBlock;
 import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.entity.EntityContext;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -14,6 +17,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,17 +29,23 @@ public class GrindingHopperBlock extends Block {
     }
 
     @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
+        super.onPlaced(world, pos, state, placer, itemStack);
+        world.getBlockTickScheduler().schedule(pos,this,40);
+    }
+
+    @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random)
     {
-        if(world.getBlockState(pos.up()).getBlock()instanceof ChestBlock && world.getBlockState(pos.down()).getBlock()instanceof ChestBlock)
+        if(world.getBlockState(pos.up()).getBlock()instanceof HopperBlock && world.getBlockState(pos.down()).getBlock()instanceof HopperBlock)
         {
             if(world.getBlockState(pos.south()).getBlock()==DoorToBabel.WATERWHEEL_BLOCK)
             {
                 List<Item> GRINDABLE = Arrays.asList(Items.WHEAT,Items.IRON_ORE, Items.GOLD_ORE);
                 List<Item> OUTPUTS = Arrays.asList(Items.BREAD, DoorToBabel.IRON_CHUNK,DoorToBabel.GOLD_CHUNK);
 
-                ChestBlockEntity input = (ChestBlockEntity) world.getBlockEntity(pos.up());
-                ChestBlockEntity output = (ChestBlockEntity) world.getBlockEntity(pos.down());
+                HopperBlockEntity input = (HopperBlockEntity) world.getBlockEntity(pos.up());
+                HopperBlockEntity output = (HopperBlockEntity) world.getBlockEntity(pos.down());
                 if(Utils.doesInventoryHaveSpace(output))
                 {
                     Item toProcess = Items.AIR;
@@ -72,7 +82,7 @@ public class GrindingHopperBlock extends Block {
                 }
             }
         }
-        world.getBlockTickScheduler().schedule(pos,this,20);
+        world.getBlockTickScheduler().schedule(pos,this,40);
     }
 
     @Override

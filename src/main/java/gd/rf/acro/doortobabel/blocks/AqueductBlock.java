@@ -5,6 +5,7 @@ import gd.rf.acro.doortobabel.Utils;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
@@ -57,11 +58,11 @@ public class AqueductBlock extends HorizontalFacingBlock implements BlockEntityP
     //to be called after the first duct has water in it
     public void tellNeighbours(World world, BlockPos pos, int speed, Vec3i dir,BlockPos origin)
     {
-        if(world.getBlockState(pos.add(dir)).getBlock()instanceof ChestBlock && world.getBlockState(origin.down()).getBlock()instanceof ChestBlock)
+        if(world.getBlockState(pos.add(dir)).getBlock()instanceof HopperBlock && world.getBlockState(origin.down()).getBlock()instanceof HopperBlock)
         {
-            //move items from the chest about the origin pos to this chest
-            ChestBlockEntity input = (ChestBlockEntity) world.getBlockEntity(origin.down());
-            ChestBlockEntity output = (ChestBlockEntity) world.getBlockEntity(pos.add(dir));
+            //move items from the hopper about the origin pos to this hopper
+            HopperBlockEntity input = (HopperBlockEntity) world.getBlockEntity(origin.down());
+            HopperBlockEntity output = (HopperBlockEntity) world.getBlockEntity(pos.add(dir));
             if(Utils.doesInventoryHaveSpace(output))
             {
                 ItemStack item = ItemStack.EMPTY;

@@ -56,28 +56,28 @@ public class DoorToBabel implements ModInitializer {
 
 
 	}
-	public static final AqueductBlock AQUEDUCT = new AqueductBlock(FabricBlockSettings.of(Material.METAL).build());
-	public static final AqueductBlock AQUEDUCT_CORNER = new AqueductBlock(FabricBlockSettings.of(Material.METAL).build());
-	public static final AqueductBlock AQUEDUCT_WATER = new AqueductBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build());
-	public static final AqueductBlock AQUEDUCT_CORNER_WATER = new AqueductBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build());
-	public static final CollectorBlock WATER_COLLECTOR = new CollectorBlock(FabricBlockSettings.of(Material.METAL).build());
-	public static final DistributorBlock WATER_DISTRIBUTOR = new DistributorBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build());
-	public static final AqueductBlock AQUEDUCT_ROT_DROP = new AqueductBlock(FabricBlockSettings.of(Material.METAL).build());
-	public static final AqueductBlock AQUEDUCT_ROT_DROP_WATER = new AqueductBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build());
-	public static final WaterWheelBlock WATERWHEEL_BLOCK = new WaterWheelBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build());
-	public static final WaterWheelStatic WATERWHEEL_BLOCK_STATIC = new WaterWheelStatic(FabricBlockSettings.of(Material.METAL).ticksRandomly().build());
-	public static final GrindingHopperBlock GRINDING_HOPPER = new GrindingHopperBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build());
-	public static final WaterElevatorBlock WATER_ELEVATOR_ROTOR = new WaterElevatorBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build());
-	public static final WaterElevatorBlock WATER_ELEVATOR_STACK = new WaterElevatorBlock(FabricBlockSettings.of(Material.METAL).build());
-	public static final SpringLoadedScaffolding SPRING_LOADED_SCAFFOLDING = new SpringLoadedScaffolding(FabricBlockSettings.of(Material.METAL).build());
-	public static final WinchLineBlock WINCH_LINE = new WinchLineBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build(),100,false);
-	public static final WinchLineBlock WINCH_LINE_SPRING = new WinchLineBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build(),100,true);
-	public static final SolarFurnaceBlock SOLAR_FURNACE = new SolarFurnaceBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().build());
+	public static final AqueductBlock AQUEDUCT = new AqueductBlock(FabricBlockSettings.of(Material.METAL).breakByHand(true).build());
+	public static final AqueductBlock AQUEDUCT_CORNER = new AqueductBlock(FabricBlockSettings.of(Material.METAL).breakByHand(true).build());
+	public static final AqueductBlock AQUEDUCT_WATER = new AqueductBlock(FabricBlockSettings.of(Material.METAL).breakByHand(true).ticksRandomly().build());
+	public static final AqueductBlock AQUEDUCT_CORNER_WATER = new AqueductBlock(FabricBlockSettings.of(Material.METAL).breakByHand(true).ticksRandomly().build());
+	public static final CollectorBlock WATER_COLLECTOR = new CollectorBlock(FabricBlockSettings.of(Material.METAL).breakByHand(true).build());
+	public static final DistributorBlock WATER_DISTRIBUTOR = new DistributorBlock(FabricBlockSettings.of(Material.METAL).breakByHand(true).ticksRandomly().build());
+	public static final AqueductBlock AQUEDUCT_ROT_DROP = new AqueductBlock(FabricBlockSettings.of(Material.METAL).breakByHand(true).build());
+	public static final AqueductBlock AQUEDUCT_ROT_DROP_WATER = new AqueductBlock(FabricBlockSettings.of(Material.METAL).breakByHand(true).ticksRandomly().build());
+	public static final WaterWheelBlock WATERWHEEL_BLOCK = new WaterWheelBlock(FabricBlockSettings.of(Material.METAL).breakByHand(true).ticksRandomly().build());
+	public static final WaterWheelStatic WATERWHEEL_BLOCK_STATIC = new WaterWheelStatic(FabricBlockSettings.of(Material.METAL).breakByHand(true).ticksRandomly().build());
+	public static final GrindingHopperBlock GRINDING_HOPPER = new GrindingHopperBlock(FabricBlockSettings.of(Material.METAL).breakByHand(true).ticksRandomly().build());
+	public static final WaterElevatorBlock WATER_ELEVATOR_ROTOR = new WaterElevatorBlock(FabricBlockSettings.of(Material.METAL).breakByHand(true).ticksRandomly().build());
+	public static final WaterElevatorBlock WATER_ELEVATOR_STACK = new WaterElevatorBlock(FabricBlockSettings.of(Material.METAL).breakByHand(true).build());
+	public static final SpringLoadedScaffolding SPRING_LOADED_SCAFFOLDING = new SpringLoadedScaffolding(FabricBlockSettings.of(Material.METAL).breakByHand(true).build());
+	public static final WinchLineBlock WINCH_LINE = new WinchLineBlock(FabricBlockSettings.of(Material.METAL).ticksRandomly().breakByHand(true).build(),100,false);
+	public static final WinchLineBlock WINCH_LINE_SPRING = new WinchLineBlock(FabricBlockSettings.of(Material.METAL).breakByHand(true).ticksRandomly().build(),100,true);
+	public static final SolarFurnaceBlock SOLAR_FURNACE = new SolarFurnaceBlock(FabricBlockSettings.of(Material.METAL).breakByHand(true).ticksRandomly().build());
 	public static final  DTBBlock DOOR_TO_BABEL = new DTBBlock(FabricBlockSettings.of(Material.ANVIL).strength(-1,3600000.0F).build());
 	public static final Block BABELSTONE = new Block(FabricBlockSettings.of(Material.METAL).strength(-1,3600000.0F).build());
 	public static final Block CHISELED_BABELSTONE = new Block(FabricBlockSettings.of(Material.METAL).strength(-1,3600000.0F).build());
-	public static final BabelGateBlock BABEL_GATE = new BabelGateBlock(FabricBlockSettings.of(Material.ANVIL).lightLevel(10).build());
-	public static final SpawnerBlock BOSS_SPAWNER = new SpawnerBlock(FabricBlockSettings.of(Material.ANVIL).lightLevel(10).ticksRandomly().build());
+	public static final BabelGateBlock BABEL_GATE = new BabelGateBlock(FabricBlockSettings.of(Material.ANVIL).strength(-1,3600000.0F).lightLevel(10).build());
+	public static final SpawnerBlock BOSS_SPAWNER = new SpawnerBlock(FabricBlockSettings.of(Material.ANVIL).strength(-1,3600000.0F).lightLevel(10).ticksRandomly().build());
 	public static final DungeonAnchorBlock DUNGEON_ANCHOR = new DungeonAnchorBlock(FabricBlockSettings.of(Material.ANVIL).strength(-1,3600000.0F).lightLevel(10).build());
 	public static final VirtualStairBlock VIRTUAL_STAIR = new VirtualStairBlock(FabricBlockSettings.of(Material.ANVIL).strength(-1,3600000.0F).lightLevel(10).build(),false);
 	public static final VirtualStairBlock VIRTUAL_STAIR_UNLOCKED = new VirtualStairBlock(FabricBlockSettings.of(Material.ANVIL).strength(-1,3600000.0F).lightLevel(10).build(),true);

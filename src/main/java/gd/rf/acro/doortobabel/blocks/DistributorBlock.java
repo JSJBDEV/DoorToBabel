@@ -6,7 +6,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.entity.EntityContext;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
@@ -15,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
 import java.util.Random;
 
@@ -25,8 +28,14 @@ public class DistributorBlock extends HorizontalFacingBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        super.randomTick(state, world, pos, random);
+    public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
+        super.onPlaced(world, pos, state, placer, itemStack);
+        world.getBlockTickScheduler().schedule(pos,this,20);
+    }
+
+    @Override
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        super.scheduledTick(state, world, pos, random);
         int pressure=0;
         BlockPos search=pos.up();
         while(world.getBlockState(search).getBlock() == DoorToBabel.WATER_COLLECTOR)
@@ -46,9 +55,9 @@ public class DistributorBlock extends HorizontalFacingBlock {
             AqueductBlock block = (AqueductBlock) world.getBlockState(duct).getBlock();
             block.tellNeighbours(world,duct,pressure,world.getBlockState(duct).get(Properties.HORIZONTAL_FACING).getVector(),pos);
         }
-
-
+        world.getBlockTickScheduler().schedule(pos,this,40);
     }
+
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
         return Block.createCuboidShape(4d,8d,4d,12d,16d,12d);
     }

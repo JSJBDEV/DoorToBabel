@@ -2,6 +2,7 @@ package gd.rf.acro.doortobabel;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.SmeltingRecipe;
@@ -183,7 +184,7 @@ public class Utils {
         return null;
     }
 
-    public static boolean doesInventoryHaveSpace(ChestBlockEntity entity)
+    public static boolean doesInventoryHaveSpace(HopperBlockEntity entity)
     {
         for (int i = 0; i < entity.getInvSize(); i++) {
             if(entity.getInvStack(i)==ItemStack.EMPTY)

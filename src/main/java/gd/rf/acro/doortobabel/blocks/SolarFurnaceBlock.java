@@ -1,11 +1,15 @@
 package gd.rf.acro.doortobabel.blocks;
 
+import gd.rf.acro.doortobabel.ConfigUtils;
 import gd.rf.acro.doortobabel.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
+import net.minecraft.block.HopperBlock;
 import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.entity.EntityContext;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,6 +33,11 @@ public class SolarFurnaceBlock extends Block {
         super(settings);
     }
 
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
+        super.onPlaced(world, pos, state, placer, itemStack);
+        world.getBlockTickScheduler().schedule(pos,this,40);
+    }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -45,47 +54,51 @@ public class SolarFurnaceBlock extends Block {
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if(world.getBlockState(pos.up()).getBlock()instanceof ChestBlock && world.getBlockState(pos.down()).getBlock()instanceof ChestBlock && !world.isClient && world.isSkyVisible(pos.north()))
+        if(world.getBlockState(pos.up()).getBlock()instanceof HopperBlock && world.getBlockState(pos.down()).getBlock()instanceof HopperBlock && !world.isClient)
         {
-            ChestBlockEntity input = (ChestBlockEntity) world.getBlockEntity(pos.up());
-            ChestBlockEntity output = (ChestBlockEntity) world.getBlockEntity(pos.down());
-            if(Utils.doesInventoryHaveSpace(output))
+            float hottemp = Float.parseFloat(ConfigUtils.config.get("hottemp"));
+            if(!world.isRaining() && world.getBiome(pos).getTemperature()> hottemp && world.isSkyVisible(pos.north()))
             {
-                ItemStack stackOut = ItemStack.EMPTY;
-                for (int i = 0; i < input.getInvSize(); i++) {
-                    if(recipeCache.containsKey(input.getInvStack(i).getItem()))
-                    {
-                        stackOut=recipeCache.get(input.getInvStack(i).getItem());
-                        System.out.println(input.getInvStack(i));
-                        input.getInvStack(i).decrement(1);
-                    }
-                    else
-                    {
-                        ItemStack stack = Utils.getCookingOutcome(input.getInvStack(i),world);
-                        if(stack!=null)
+                HopperBlockEntity input = (HopperBlockEntity) world.getBlockEntity(pos.up());
+                HopperBlockEntity output = (HopperBlockEntity) world.getBlockEntity(pos.down());
+                if(Utils.doesInventoryHaveSpace(output))
+                {
+                    ItemStack stackOut = ItemStack.EMPTY;
+                    for (int i = 0; i < input.getInvSize(); i++) {
+                        if(recipeCache.containsKey(input.getInvStack(i).getItem()))
                         {
-                            if(stack.getItem()!=Items.AIR)
+                            stackOut=recipeCache.get(input.getInvStack(i).getItem());
+                            System.out.println(input.getInvStack(i));
+                            input.getInvStack(i).decrement(1);
+                        }
+                        else
+                        {
+                            ItemStack stack = Utils.getCookingOutcome(input.getInvStack(i),world);
+                            if(stack!=null)
                             {
-                                stackOut=stack.copy();
-                                recipeCache.put(input.getInvStack(i).getItem(),stackOut);
-                                input.getInvStack(i).decrement(1);
+                                if(stack.getItem()!=Items.AIR)
+                                {
+                                    stackOut=stack.copy();
+                                    recipeCache.put(input.getInvStack(i).getItem(),stackOut);
+                                    input.getInvStack(i).decrement(1);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if(stackOut!=ItemStack.EMPTY){
+                        for (int i = 0; i < output.getInvSize(); i++) {
+                            if(output.getInvStack(i)==ItemStack.EMPTY)
+                            {
+                                output.setInvStack(i,stackOut.copy());
                                 break;
                             }
                         }
                     }
                 }
-                if(stackOut!=ItemStack.EMPTY){
-                    for (int i = 0; i < output.getInvSize(); i++) {
-                        if(output.getInvStack(i)==ItemStack.EMPTY)
-                        {
-                            output.setInvStack(i,stackOut.copy());
-                            break;
-                        }
-                    }
-                }
             }
         }
-        world.getBlockTickScheduler().schedule(pos,this,20);
+        world.getBlockTickScheduler().schedule(pos,this,40);
     }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {

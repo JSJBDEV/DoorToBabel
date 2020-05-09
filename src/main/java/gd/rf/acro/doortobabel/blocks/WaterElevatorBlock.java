@@ -4,13 +4,17 @@ import gd.rf.acro.doortobabel.DoorToBabel;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
+import net.minecraft.block.HopperBlock;
 import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.entity.EntityContext;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
 import java.util.Random;
 
@@ -24,20 +28,26 @@ public class WaterElevatorBlock extends Block {
     }
 
     @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
+        super.onPlaced(world, pos, state, placer, itemStack);
+        world.getBlockTickScheduler().schedule(pos,this,40);
+    }
+
+    @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if(world.getBlockState(pos.up()).getBlock()== DoorToBabel.WATER_ELEVATOR_STACK
                 && world.getBlockState(pos.south()).getBlock()==DoorToBabel.WATERWHEEL_BLOCK
-                && world.getBlockState(pos.down()).getBlock()instanceof ChestBlock)
+                && world.getBlockState(pos.down()).getBlock()instanceof HopperBlock)
         {
-            ChestBlockEntity input = (ChestBlockEntity) world.getBlockEntity(pos.down());
+            HopperBlockEntity input = (HopperBlockEntity) world.getBlockEntity(pos.down());
             BlockPos stack = pos.up();
             while (world.getBlockState(stack).getBlock()== DoorToBabel.WATER_ELEVATOR_STACK)
             {
                 stack=stack.up();
             }
-            if(world.getBlockState(stack).getBlock()instanceof ChestBlock)
+            if(world.getBlockState(stack).getBlock()instanceof HopperBlock)
             {
-                ChestBlockEntity output = (ChestBlockEntity) world.getBlockEntity(stack);
+                HopperBlockEntity output = (HopperBlockEntity) world.getBlockEntity(stack);
                 ItemStack item = ItemStack.EMPTY;
                 for (int i = 0; i < input.getInvSize(); i++) {
                     if(input.getInvStack(i)!= ItemStack.EMPTY)
