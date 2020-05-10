@@ -28,7 +28,7 @@ public class DTBBlock extends Block {
             else
             {
                 player.changeDimension(DimensionType.OVERWORLD);
-                player.teleport(0,100,0);
+                player.teleport(10000,205,10000);
             }
         }
         return super.onUse(state, world, pos, player, hand, hit);

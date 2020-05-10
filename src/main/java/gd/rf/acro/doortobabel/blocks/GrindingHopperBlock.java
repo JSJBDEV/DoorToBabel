@@ -1,7 +1,9 @@
 package gd.rf.acro.doortobabel.blocks;
 
+import gd.rf.acro.doortobabel.ConfigUtils;
 import gd.rf.acro.doortobabel.DoorToBabel;
 import gd.rf.acro.doortobabel.Utils;
+import gd.rf.acro.doortobabel.world.BabelGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
@@ -14,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.LiteralText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
@@ -31,7 +34,17 @@ public class GrindingHopperBlock extends Block {
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
         super.onPlaced(world, pos, state, placer, itemStack);
-        world.getBlockTickScheduler().schedule(pos,this,40);
+        world.getBlockTickScheduler().schedule(pos,this,Integer.parseInt(ConfigUtils.config.get("ticks")));
+        if(!placer.getScoreboardTags().contains("dtb_hopper"))
+        {
+            placer.sendMessage(new LiteralText("Placing the grinding hopper makes your mind drift to a huge tower..."));
+            placer.addScoreboardTag("dtb_hopper");
+        }
+        if(placer.getScoreboardTags().contains("dtb_furnace") && placer.getScoreboardTags().contains("dtb_hopper") && world.getBlockState(new BlockPos(10000,100,9999)).getBlock()!=DoorToBabel.BABELSTONE)
+        {
+            placer.sendMessage(new LiteralText("Piecing your information together you decide to head out to 10000 10000 a dungeon awaits... [prepare for some lag]"));
+            BabelGenerator.generate(world,new BlockPos(10000,200,10000));
+        }
     }
 
     @Override
@@ -41,8 +54,8 @@ public class GrindingHopperBlock extends Block {
         {
             if(world.getBlockState(pos.south()).getBlock()==DoorToBabel.WATERWHEEL_BLOCK)
             {
-                List<Item> GRINDABLE = Arrays.asList(Items.WHEAT,Items.IRON_ORE, Items.GOLD_ORE);
-                List<Item> OUTPUTS = Arrays.asList(Items.BREAD, DoorToBabel.IRON_CHUNK,DoorToBabel.GOLD_CHUNK);
+                List<Item> GRINDABLE = Arrays.asList(Items.WHEAT,Items.IRON_ORE, Items.GOLD_ORE,Items.DIAMOND_ORE,Items.SANDSTONE,Items.QUARTZ_BLOCK);
+                List<Item> OUTPUTS = Arrays.asList(Items.BREAD, DoorToBabel.IRON_CHUNK,DoorToBabel.GOLD_CHUNK,Items.DIAMOND,Items.SAND,Items.QUARTZ);
 
                 HopperBlockEntity input = (HopperBlockEntity) world.getBlockEntity(pos.up());
                 HopperBlockEntity output = (HopperBlockEntity) world.getBlockEntity(pos.down());
@@ -82,7 +95,7 @@ public class GrindingHopperBlock extends Block {
                 }
             }
         }
-        world.getBlockTickScheduler().schedule(pos,this,40);
+        world.getBlockTickScheduler().schedule(pos,this,Integer.parseInt(ConfigUtils.config.get("ticks")));
     }
 
     @Override

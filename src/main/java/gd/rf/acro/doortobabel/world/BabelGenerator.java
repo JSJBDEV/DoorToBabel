@@ -24,7 +24,7 @@ public class BabelGenerator {
                 int topy = world.getTopY(Heightmap.Type.WORLD_SURFACE,i,j);
                 while (thisy>=topy)
                 {
-                    world.setBlockState(new BlockPos(i,thisy,j), Blocks.POLISHED_ANDESITE.getDefaultState());
+                    world.setBlockState(new BlockPos(i,thisy,j), DoorToBabel.BABELSTONE.getDefaultState());
                     thisy--;
                 }
             }

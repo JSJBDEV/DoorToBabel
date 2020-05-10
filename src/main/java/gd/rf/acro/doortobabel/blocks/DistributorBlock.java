@@ -1,5 +1,6 @@
 package gd.rf.acro.doortobabel.blocks;
 
+import gd.rf.acro.doortobabel.ConfigUtils;
 import gd.rf.acro.doortobabel.DoorToBabel;
 import gd.rf.acro.doortobabel.Utils;
 import net.minecraft.block.Block;
@@ -30,7 +31,8 @@ public class DistributorBlock extends HorizontalFacingBlock {
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
         super.onPlaced(world, pos, state, placer, itemStack);
-        world.getBlockTickScheduler().schedule(pos,this,20);
+
+        world.getBlockTickScheduler().schedule(pos,this, Integer.parseInt(ConfigUtils.config.get("ticks")));
     }
 
     @Override
@@ -55,7 +57,7 @@ public class DistributorBlock extends HorizontalFacingBlock {
             AqueductBlock block = (AqueductBlock) world.getBlockState(duct).getBlock();
             block.tellNeighbours(world,duct,pressure,world.getBlockState(duct).get(Properties.HORIZONTAL_FACING).getVector(),pos);
         }
-        world.getBlockTickScheduler().schedule(pos,this,40);
+        world.getBlockTickScheduler().schedule(pos,this,Integer.parseInt(ConfigUtils.config.get("ticks")));
     }
 
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {

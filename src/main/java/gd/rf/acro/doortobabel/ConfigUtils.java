@@ -61,6 +61,8 @@ public class ConfigUtils {
         List<String> defaults = new ArrayList<>();
         defaults.add("#mirrors will only work in temperatures greater than this value (default 0.7)");
         defaults.add("hottemp=0.7");
+        defaults.add("#amount of ticks between inventory actions, e.g grinding hopper, aqueduct transfer etc (default 40)");
+        defaults.add("ticks=40");
         return defaults;
     }
 

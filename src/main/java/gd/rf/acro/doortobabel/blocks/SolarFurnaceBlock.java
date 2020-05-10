@@ -1,7 +1,9 @@
 package gd.rf.acro.doortobabel.blocks;
 
 import gd.rf.acro.doortobabel.ConfigUtils;
+import gd.rf.acro.doortobabel.DoorToBabel;
 import gd.rf.acro.doortobabel.Utils;
+import gd.rf.acro.doortobabel.world.BabelGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
@@ -36,7 +38,17 @@ public class SolarFurnaceBlock extends Block {
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
         super.onPlaced(world, pos, state, placer, itemStack);
-        world.getBlockTickScheduler().schedule(pos,this,40);
+        world.getBlockTickScheduler().schedule(pos,this,Integer.parseInt(ConfigUtils.config.get("ticks")));
+        if(!placer.getScoreboardTags().contains("dtb_furnace"))
+        {
+            placer.sendMessage(new LiteralText("Placing the solar furnace casts your mind to a door to another dimension..."));
+            placer.addScoreboardTag("dtb_furnace");
+        }
+        if(placer.getScoreboardTags().contains("dtb_furnace") && placer.getScoreboardTags().contains("dtb_hopper") && world.getBlockState(new BlockPos(10000,100,9999)).getBlock()!= DoorToBabel.BABELSTONE)
+        {
+            placer.sendMessage(new LiteralText("Piecing your information together you decide to head out to 10000 10000 a dungeon awaits..."));
+            BabelGenerator.generate(world,new BlockPos(10000,200,10000));
+        }
     }
 
     @Override
@@ -98,7 +110,7 @@ public class SolarFurnaceBlock extends Block {
                 }
             }
         }
-        world.getBlockTickScheduler().schedule(pos,this,40);
+        world.getBlockTickScheduler().schedule(pos,this,Integer.parseInt(ConfigUtils.config.get("ticks")));
     }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
