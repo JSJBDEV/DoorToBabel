@@ -15,6 +15,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.apache.commons.lang3.RandomUtils;
 
 import java.util.Random;
@@ -25,7 +26,13 @@ public class SpawnerBlock extends Block {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean moved) {
+        super.onBlockAdded(state, world, pos, oldState, moved);
+        world.getBlockTickScheduler().schedule(pos,this,100);
+    }
+
+    @Override
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         world.setBlockState(pos, Blocks.AIR.getDefaultState());
         SkeletonEntity boss = new SkeletonEntity(EntityType.SKELETON,world);
         boss.teleport(pos.getX(),pos.getY(),pos.getZ());
@@ -47,6 +54,5 @@ public class SpawnerBlock extends Block {
         boss.setCustomNameVisible(true);
         boss.setHealth(300);
         world.spawnEntity(boss);
-
     }
 }

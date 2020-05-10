@@ -128,7 +128,7 @@ public class DoorToBabel implements ModInitializer {
 	public static final RepeatingCrossbowItem REPEATING_CROSSBOW = new RepeatingCrossbowItem(new Item.Settings().group(SPRINGS),16);
 	public static final MagnifyingGlassItem MAGNIFYING_GLASS = new MagnifyingGlassItem(new Item.Settings().group(OPTICS).maxDamage(1000));
 	public static final HeatRayItem HEAT_RAY = new HeatRayItem(new Item.Settings().group(OPTICS).maxDamage(1000));
-	public static final StructureItem STRUCTURE_ITEM = new StructureItem(new Item.Settings().group(DUNGEON));
+	public static final StructureItem STRUCTURE_ITEM = new StructureItem(new Item.Settings());
 	public void registerItems()
 	{
 		Registry.register(Registry.ITEM, new Identifier("doortobabel", "aqueduct"), new BlockItem(AQUEDUCT, new Item.Settings().group(AQUEDUCTS)));
