@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "doortobabel",
   "version": "${version}",
 
   "name": "Door To Babel",
   "description": "A large mod about ancient technology",
   "authors": [
-    "Me!"
+    "Acro"
   ],
   "contact": {
     "homepage": "http://acro.rf.gd",
