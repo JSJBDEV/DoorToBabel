@@ -68,19 +68,21 @@ public class SolarFurnaceBlock extends Block {
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if(world.getBlockState(pos.up()).getBlock()instanceof HopperBlock && world.getBlockState(pos.down()).getBlock()instanceof HopperBlock && !world.isClient)
         {
+            System.out.println("conditions set 1 met");
             float hottemp = Float.parseFloat(ConfigUtils.config.get("hottemp"));
             if(!world.isRaining() && world.getBiome(pos).getTemperature()> hottemp && world.isSkyVisible(pos.north()))
             {
+                System.out.println("conditions set 2 met");
                 HopperBlockEntity input = (HopperBlockEntity) world.getBlockEntity(pos.up());
                 HopperBlockEntity output = (HopperBlockEntity) world.getBlockEntity(pos.down());
                 if(Utils.doesInventoryHaveSpace(output))
                 {
+                    System.out.println("space found");
                     ItemStack stackOut = ItemStack.EMPTY;
                     for (int i = 0; i < input.getInvSize(); i++) {
                         if(recipeCache.containsKey(input.getInvStack(i).getItem()))
                         {
                             stackOut=recipeCache.get(input.getInvStack(i).getItem());
-                            System.out.println(input.getInvStack(i));
                             input.getInvStack(i).decrement(1);
                         }
                         else

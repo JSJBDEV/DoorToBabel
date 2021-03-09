@@ -23,6 +23,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -100,5 +101,24 @@ public class WinchLineBlock extends HorizontalFacingBlock {
                 itemStack.decrement(1);
             }
         }
+    }
+
+    //make winchline consistently break
+    public void notifyThenBreak(World world, BlockState state, BlockPos pos)
+    {
+        Vec3i dir = state.get(Properties.HORIZONTAL_FACING).getVector();
+        BlockPos current = pos.add(dir);
+        if(world.getBlockState(current).getBlock() instanceof WinchLineBlock)
+        {
+            WinchLineBlock block = (WinchLineBlock) world.getBlockState(current).getBlock();
+            block.notifyThenBreak(world,state,current);
+        }
+        world.breakBlock(pos,true,null);
+    }
+
+    @Override
+    public void onBroken(IWorld world, BlockPos pos, BlockState state) {
+        super.onBroken(world, pos, state);
+        notifyThenBreak((World) world,state,pos);
     }
 }

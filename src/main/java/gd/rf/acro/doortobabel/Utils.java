@@ -187,7 +187,8 @@ public class Utils {
     public static boolean doesInventoryHaveSpace(HopperBlockEntity entity)
     {
         for (int i = 0; i < entity.getInvSize(); i++) {
-            if(entity.getInvStack(i)==ItemStack.EMPTY)
+            //added extra conditions -> if a hopper was unfilled naturally its slots are not EMPTY
+            if(entity.getInvStack(i)==ItemStack.EMPTY || entity.getInvStack(i)==null || entity.getInvStack(i).getCount()==0)
             {
                 return true;
             }
@@ -218,7 +219,9 @@ public class Utils {
 
 
     }
-    private static final String[] names = {"Achilles",
+    //https://www.momjunction.com/articles/baby-names-inspired-by-greek-mythology_00332792/
+    private static final String[] names = {
+            "Achilles",
             "Adonis",
             "Adrian",
             "Aegeus",
@@ -417,6 +420,7 @@ public class Utils {
             "Selena",
             "Tabatha"};
 
+    //https://www.paperrater.com/page/lists-of-adjectives
     private static final String[] descriptors = {"attractive",
             "bald",
             "beautiful",
